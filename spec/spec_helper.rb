@@ -1,0 +1,6 @@
+require 'rspec'
+require 'elefeely'
+
+RSpec.configure do |config|
+  config.color_enabled = true
+end
