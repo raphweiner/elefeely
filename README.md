@@ -1,6 +1,8 @@
 # Elefeely
 
-TODO: Write a gem description
+Elefeely keeps track of your feelings for you.  This Ruby gem provides the (admin) interface to speak to the the Elefeely-api, and is integrated into the [elefeely-twilio-interface](http://github.com/raphweiner/elefeely-twilio-interface).
+
+NOTE: This is not a gem intended for public use.  Functionality is limited to admins with correct credentials.
 
 ## Installation
 
@@ -16,9 +18,32 @@ Or install it yourself as:
 
     $ gem install elefeely
 
-## Usage
+## Configure
 
-TODO: Write usage instructions here
+Configure the gem with:
+
+```ruby
+Elefeely.configure do |config|
+  config.source_key = SOURCE_KEY
+  config.source_secret = SOURCE_SECRET
+end
+```
+
+That's it! You're ready to talk to Elefeely.
+
+### Usage Examples
+
+Retrieve verified phone numbers:
+
+```ruby
+Elefeely.phone_numbers
+```
+
+Post a new feeling:
+
+```ruby
+Elefeely.send_feeling(source: 'twilio', event_id: '124156', score: 4, uid: 4151231234)
+```
 
 ## Contributing
 
