@@ -46,13 +46,14 @@ private
   end
 
   def self.uri(path)
-    validate_credentials!
     uri = "http://elefeely-api.herokuapp.com"
     uri << "#{path}?source_key=#{source_key}&timestamp=#{Time.now.to_i}"
     uri << "&signature=#{signature(uri)}"
   end
 
   def self.signature(uri)
+    validate_credentials!
+
     OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha1'), source_secret, uri)
   end
 end
