@@ -9,20 +9,31 @@ module Elefeely
   extend Elefeely::Configurable
 
   def self.phone_numbers
-    validate_credentials!
-
-    response = ::Typhoeus::Request.get(uri('/phones'))
-    parse_response(response)
+    request(:get, phone_numbers_uri)
   end
 
   def self.send_feeling(params)
-    validate_credentials!
-
-    response = ::Typhoeus::Request.post(uri('/feelings'), body: params)
-    parse_response(response)
+    request(:post, feelings_uri, body: params)
   end
 
 private
+
+  def self.phone_numbers_uri
+    uri '/phones'
+  end
+
+  def self.feelings_uri
+    uri '/feelings'
+  end
+
+  def self.request(verb, *params)
+    response = connection.send(verb, *params)
+    parse_response(response)
+  end
+
+  def self.connection
+    ::Typhoeus::Request
+  end
 
   def self.parse_response(response)
     if response.code == 200
@@ -35,6 +46,7 @@ private
   end
 
   def self.uri(path)
+    validate_credentials!
     uri = "http://elefeely-api.herokuapp.com"
     uri << "#{path}?source_key=#{source_key}&timestamp=#{Time.now.to_i}"
     uri << "&signature=#{signature(uri)}"
