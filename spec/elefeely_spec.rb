@@ -60,8 +60,7 @@ describe Elefeely do
   describe '.send_feeling' do
     context 'with valid credentials' do
       before(:each) do
-        Elefeely.stub(:source_key).and_return('123')
-        Elefeely.stub(:source_secret).and_return('123')
+        Elefeely.stub(source_key: '123', source_secret: '123')
       end
 
       it 'should return response' do
