@@ -18,7 +18,7 @@ module Elefeely
   def self.send_feeling(params)
     validate_credentials!
 
-    response = ::Typhoeus::Request.post(uri('/feelings'), body: params.to_json)
+    response = ::Typhoeus::Request.post(uri('/feelings'), body: params)
     parse_response(response)
   end
 
