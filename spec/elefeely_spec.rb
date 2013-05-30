@@ -40,17 +40,17 @@ describe Elefeely do
       end
 
       it 'should return phone_numbers' do
-        response = OpenStruct.new(code: 200, body: ({'phone_numbers' => ['123']}).to_json)
-        Typhoeus.stub(/phones/).and_return(response)
+        response = OpenStruct.new(code: 200, body: ({'hello' => 'json'}).to_json)
+        Typhoeus.stub(/phones?/).and_return(response)
 
-        expect(Elefeely.phone_numbers).to eq ({'phone_numbers' => ['123']})
+        expect(Elefeely.phone_numbers).to eq ({'hello' => 'json'})
       end
     end
 
     context 'without credentials' do
       it 'should raise a type error' do
-        response = OpenStruct.new(code: 200, body: ({'phone_numbers' => ['123']}).to_json)
-        Typhoeus.stub(/phones/).and_return(response)
+        response = OpenStruct.new(code: 200, body: ({'hello' => 'json'}).to_json)
+        Typhoeus.stub(/phones?/).and_return(response)
 
         expect { Elefeely.phone_numbers }.to raise_error ArgumentError
       end
@@ -90,7 +90,7 @@ describe Elefeely do
       context 'and a phone number' do
         it 'should return a response' do
           response = OpenStruct.new(code: 200, body: {'hello' => 'json'}.to_json)
-          Typhoeus.stub(/phones\/1234567890/ => response)
+          Typhoeus.stub(/phones/ => response)
 
           expect(Elefeely.verify_number('1234567890')).to eq('hello' => 'json')
         end
