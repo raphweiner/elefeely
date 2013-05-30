@@ -90,7 +90,7 @@ describe Elefeely do
       context 'and a phone number' do
         it 'should return a response' do
           response = OpenStruct.new(code: 200, body: {'hello' => 'json'}.to_json)
-          Typhoeus.stub(/feelings\/1234567890/ => response)
+          Typhoeus.stub(/phones\/1234567890/ => response)
 
           expect(Elefeely.verify_number('1234567890')).to eq('hello' => 'json')
         end

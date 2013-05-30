@@ -31,7 +31,7 @@ private
   end
 
   def self.update_phone_number_uri(phone_number)
-    uri "/feelings/#{phone_number}"
+    uri "/phones/#{phone_number}"
   end
 
   def self.request(verb, *params)
@@ -54,7 +54,8 @@ private
   end
 
   def self.uri(path)
-    uri = "http://elefeely-api.herokuapp.com"
+    # uri = "http://elefeely-api.herokuapp.com"
+    uri = "http://localhost:3000"
     uri << "#{path}?source_key=#{source_key}&timestamp=#{Time.now.to_i}"
     uri << "&signature=#{signature(uri)}"
   end
