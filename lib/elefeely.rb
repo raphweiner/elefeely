@@ -16,6 +16,10 @@ module Elefeely
     request(:post, feelings_uri, body: params)
   end
 
+  def self.verify_number(phone_number)
+    request(:put, update_phone_number_uri(phone_number))
+  end
+
 private
 
   def self.phone_numbers_uri
@@ -24,6 +28,10 @@ private
 
   def self.feelings_uri
     uri '/feelings'
+  end
+
+  def self.update_phone_number_uri(phone_number)
+    uri "/feelings/#{phone_number}"
   end
 
   def self.request(verb, *params)

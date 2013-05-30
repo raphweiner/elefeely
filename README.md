@@ -33,6 +33,12 @@ That's it! You're ready to talk to Elefeely.
 
 ### Usage Examples
 
+Verify a number:
+
+```ruby
+Elefeely.verify_number('0123456789')
+```
+
 Retrieve verified phone numbers:
 
 ```ruby

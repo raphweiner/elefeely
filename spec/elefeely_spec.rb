@@ -65,7 +65,7 @@ describe Elefeely do
 
       it 'should return response' do
         response = OpenStruct.new(code: 200, body: {'hello' => 'json'}.to_json)
-        Typhoeus.stub(/feelings/).and_return(response)
+        Typhoeus.stub(/feelings?/).and_return(response)
 
         expect(Elefeely.send_feeling(hi: 'hi back')).to eq('hello' => 'json')
       end
@@ -74,9 +74,32 @@ describe Elefeely do
     context 'without credentials' do
       it 'should raise a type error' do
         response = OpenStruct.new(code: 200, body: {'hello' => 'json'}.to_json)
-        Typhoeus.stub(/feelings/).and_return(response)
+        Typhoeus.stub(/feelings?/).and_return(response)
 
         expect { Elefeely.send_feeling(hi: 'hi back') }.to raise_error ArgumentError
+      end
+    end
+  end
+
+  describe '.verify_number' do
+    context 'with valid credentials' do
+      before(:each) do
+        Elefeely.stub(source_key: '123', source_secret: '123')
+      end
+
+      context 'and a phone number' do
+        it 'should return a response' do
+          response = OpenStruct.new(code: 200, body: {'hello' => 'json'}.to_json)
+          Typhoeus.stub(/feelings\/1234567890/ => response)
+
+          expect(Elefeely.verify_number('1234567890')).to eq('hello' => 'json')
+        end
+      end
+    end
+
+    context 'with invalid credentials' do
+      it 'should raise argument error' do
+        expect { Elefeely.verify_number('1234567890') }.to raise_error ArgumentError
       end
     end
   end
