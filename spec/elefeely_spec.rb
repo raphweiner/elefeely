@@ -78,7 +78,7 @@ describe Elefeely do
 
   describe '.verify_number' do
     context 'with valid credentials' do
-      before(:all) do
+      before(:each) do
         Elefeely.stub(source_key: '123', source_secret: '123')
         response = OpenStruct.new(code: 200, body: {'hello' => 'json'}.to_json)
         Typhoeus.stub(/phones/ => response)
@@ -87,6 +87,12 @@ describe Elefeely do
       context 'and phone number' do
         it 'should return a response' do
           expect(Elefeely.verify_number('1234567890')).to eq('hello' => 'json')
+        end
+      end
+
+      context 'without a phone number' do
+        it 'should not raise an argument error' do
+          expect(Elefeely.verify_number(nil)).to_not raise_error ArgumentError
         end
       end
     end
