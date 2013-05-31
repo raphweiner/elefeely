@@ -54,8 +54,7 @@ private
   end
 
   def self.uri(path)
-    # uri = "http://elefeely-api.herokuapp.com"
-    uri = "http://localhost:3000"
+    uri = "http://elefeely-api.herokuapp.com"
     uri << "#{path}?source_key=#{source_key}&timestamp=#{Time.now.to_i}"
     uri << "&signature=#{signature(uri)}"
   end
