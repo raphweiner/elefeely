@@ -97,7 +97,7 @@ describe Elefeely do
       end
     end
 
-    context 'with invalid credentials' do
+    context 'without credentials' do
       it 'should raise argument error' do
         expect { Elefeely.verify_number('1234567890') }.to raise_error ArgumentError
       end
