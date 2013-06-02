@@ -62,6 +62,6 @@ private
   def self.signature(uri)
     validate_credentials!
 
-    OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha1'), source_secret, uri)
+    OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha512'), source_secret, uri)
   end
 end
