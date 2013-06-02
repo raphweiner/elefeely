@@ -4,10 +4,7 @@ describe Elefeely do
   context 'with an valid credentials' do
     it 'should be configurable' do
       expect {
-        Elefeely.configure do |config|
-          config.source_key = '123'
-          config.source_secret = 'abc'
-        end
+        Elefeely.configure(source_key: '123', source_secret: 'abc')
         }.to_not raise_error
     end
   end
@@ -15,19 +12,13 @@ describe Elefeely do
   context 'with invalid credentials' do
     it 'should raise argument error with no source_key' do
       expect {
-        Elefeely.configure do |config|
-          config.source_key = nil
-          config.source_secret = 'abc'
-        end
+        Elefeely.configure(source_key: nil, source_secret: 'abc')
         }.to raise_error ArgumentError
     end
 
     it 'should raise argument error with no source_secret' do
       expect {
-        Elefeely.configure do |config|
-          config.source_key = '123'
-          config.source_secret = nil
-        end
+        Elefeely.configure(source_key: '123', source_secret: nil)
         }.to raise_error ArgumentError
     end
   end

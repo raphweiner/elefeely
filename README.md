@@ -23,10 +23,8 @@ Or install it yourself as:
 Configure the gem with:
 
 ```ruby
-Elefeely.configure do |config|
-  config.source_key = SOURCE_KEY
-  config.source_secret = SOURCE_SECRET
-end
+Elefeely.configure(source_key: YOUR SOURCE KEY,
+                   source_secret: YOUR SOURCE SECRET)
 ```
 
 That's it! You're ready to talk to Elefeely.

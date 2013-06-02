@@ -3,8 +3,9 @@ module Elefeely
     attr_accessor :source_key,
                   :source_secret
 
-    def configure
-      yield self
+    def configure(params)
+      self.source_key = params[:source_key]
+      self.source_secret = params[:source_secret]
 
       validate_credentials!
     end
