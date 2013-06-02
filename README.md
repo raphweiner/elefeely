@@ -1,3 +1,6 @@
+[![Code Climate](https://codeclimate.com/github/raphweiner/elefeely.png)](https://codeclimate.com/github/raphweiner/elefeely)
+
+
 # Elefeely
 
 Elefeely keeps track of your feelings for you.  This Ruby gem provides the (admin) interface to speak to the the Elefeely-api, and is integrated into the [elefeely-twilio-interface](http://github.com/raphweiner/elefeely-twilio-interface).
