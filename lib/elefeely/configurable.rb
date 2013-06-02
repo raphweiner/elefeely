@@ -15,9 +15,12 @@ module Elefeely
     def validate_credentials!
       [source_key, source_secret].each do |credential|
         if credential.nil? || !credential.is_a?(String)
-          raise ArgumentError, "Invalid: must have a valid key and secret."
+          raise InvalidCredentials
         end
       end
     end
+
   end
 end
+
+class InvalidCredentials < RuntimeError; end

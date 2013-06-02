@@ -13,13 +13,13 @@ describe Elefeely do
     it 'should raise argument error with no source_key' do
       expect {
         Elefeely.configure(source_key: nil, source_secret: 'abc')
-        }.to raise_error ArgumentError
+        }.to raise_error InvalidCredentials
     end
 
     it 'should raise argument error with no source_secret' do
       expect {
         Elefeely.configure(source_key: '123', source_secret: nil)
-        }.to raise_error ArgumentError
+        }.to raise_error InvalidCredentials
     end
   end
 
@@ -42,7 +42,7 @@ describe Elefeely do
 
     context 'without credentials' do
       it 'should raise a type error' do
-        expect { Elefeely.phone_numbers }.to raise_error ArgumentError
+        expect { Elefeely.phone_numbers }.to raise_error InvalidCredentials
       end
     end
   end
@@ -62,7 +62,7 @@ describe Elefeely do
 
     context 'without credentials' do
       it 'should raise a type error' do
-        expect { Elefeely.send_feeling(hi: 'hi back') }.to raise_error ArgumentError
+        expect { Elefeely.send_feeling(hi: 'hi back') }.to raise_error InvalidCredentials
       end
     end
   end
@@ -83,14 +83,14 @@ describe Elefeely do
 
       context 'without a phone number' do
         it 'should not raise an argument error' do
-          expect(Elefeely.verify_number(nil)).to_not raise_error ArgumentError
+          expect(Elefeely.verify_number(nil)).to_not raise_error InvalidCredentials
         end
       end
     end
 
     context 'without credentials' do
       it 'should raise argument error' do
-        expect { Elefeely.verify_number('1234567890') }.to raise_error ArgumentError
+        expect { Elefeely.verify_number('1234567890') }.to raise_error InvalidCredentials
       end
     end
   end
