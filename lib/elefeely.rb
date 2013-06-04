@@ -17,7 +17,11 @@ module Elefeely
   end
 
   def self.verify_number(phone_number)
-    request(:put, update_phone_number_uri(phone_number))
+    request(:put, update_phone_number_uri(phone_number), body: {verified: true})
+  end
+
+  def self.unsubscribe_number(phone_number)
+    request(:put, update_phone_number_uri(phone_number), body: {verified: false})
   end
 
 private

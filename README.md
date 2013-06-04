@@ -53,6 +53,12 @@ Elefeely.send_feeling(feeling: { source_event_id: '124156', score: 4},
                       uid: '4151231234')
 ```
 
+Unsubscribe a number:
+
+```ruby
+Elefeely.unsubscribe_number('0123456789')
+```
+
 ## Contributing
 
 1. Fork it

@@ -94,4 +94,18 @@ describe Elefeely do
       end
     end
   end
+
+  describe '.unsubscribe_number' do
+      before(:each) do
+        Elefeely.stub(source_key: '123', source_secret: '123')
+        response = OpenStruct.new(code: 200, body: {'hello' => 'json'}.to_json)
+        Typhoeus.stub(/phones/ => response)
+      end
+
+    context 'with valid credentials' do
+      it 'should return a response' do
+        expect(Elefeely.unsubscribe_number('1234567890')).to eq('hello' => 'json')
+      end
+    end
+  end
 end
