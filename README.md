@@ -49,8 +49,7 @@ Elefeely.phone_numbers
 Post a new feeling:
 
 ```ruby
-Elefeely.send_feeling(feeling: { source_event_id: '124156', score: 4},
-                      uid: '4151231234')
+Elefeely.send_feeling(feeling: { source_event_id: '124156', score: 4}, uid: '4151231234')
 ```
 
 Unsubscribe a number:

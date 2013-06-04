@@ -17,11 +17,11 @@ module Elefeely
   end
 
   def self.verify_number(phone_number)
-    request(:put, update_phone_number_uri(phone_number), body: {verified: true})
+    request(:post, phone_number_uri(phone_number), body: {verified: true})
   end
 
   def self.unsubscribe_number(phone_number)
-    request(:put, update_phone_number_uri(phone_number), body: {verified: false})
+    request(:post, phone_number_uri(phone_number), body: {verified: false})
   end
 
 private
@@ -34,7 +34,7 @@ private
     uri '/feelings'
   end
 
-  def self.update_phone_number_uri(phone_number)
+  def self.phone_number_uri(phone_number)
     uri "/phones/#{phone_number}"
   end
 
