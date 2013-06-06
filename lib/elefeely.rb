@@ -26,16 +26,20 @@ module Elefeely
 
 private
 
+  def self.api_directory
+    @api_directory ||= request(:get, api_host)
+  end
+
   def self.phone_numbers_uri
-    uri '/phones'
+    signed_url(api_directory['phone_numbers_url'])
   end
 
   def self.feelings_uri
-    uri '/feelings'
+    signed_url(api_directory['feelings_url'])
   end
 
   def self.phone_number_uri(phone_number)
-    uri "/phones/#{phone_number}"
+    signed_url(api_directory['phone_url'].gsub('{number}', phone_number))
   end
 
   def self.request(verb, *params)
@@ -57,15 +61,14 @@ private
     end
   end
 
-  def self.uri(path)
-    uri = "http://elefeely-api.herokuapp.com"
-    uri << "#{path}?source_key=#{source_key}&timestamp=#{Time.now.to_i}"
-    uri << "&signature=#{signature(uri)}"
+  def self.signed_url(url)
+    url << "?source_key=#{source_key}&timestamp=#{Time.now.to_i}"
+    url << "&signature=#{signature(url)}"
   end
 
-  def self.signature(uri)
+  def self.signature(url)
     validate_credentials!
 
-    OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha512'), source_secret, uri)
+    OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha512'), source_secret, url)
   end
 end

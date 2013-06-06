@@ -27,7 +27,8 @@ Configure the gem with:
 
 ```ruby
 Elefeely.configure(source_key: YOUR SOURCE KEY,
-                   source_secret: YOUR SOURCE SECRET)
+                   source_secret: YOUR SOURCE SECRET,
+                   api_host: 'http://elefeely-api.herokuapp.com')
 ```
 
 That's it! You're ready to talk to Elefeely.

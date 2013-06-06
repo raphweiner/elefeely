@@ -1,11 +1,13 @@
 module Elefeely
   module Configurable
     attr_accessor :source_key,
-                  :source_secret
+                  :source_secret,
+                  :api_host
 
     def configure(params)
       self.source_key = params[:source_key]
       self.source_secret = params[:source_secret]
+      self.api_host = params[:api_host]
 
       validate_credentials!
     end
