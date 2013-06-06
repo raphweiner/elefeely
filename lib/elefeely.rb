@@ -62,8 +62,9 @@ private
   end
 
   def self.signed_url(url)
-    url << "?source_key=#{source_key}&timestamp=#{Time.now.to_i}"
-    url << "&signature=#{signature(url)}"
+    signed_url = url
+    signed_url << "?source_key=#{source_key}&timestamp=#{Time.now.to_i}"
+    signed_url << "&signature=#{signature(signed_url)}"
   end
 
   def self.signature(url)
