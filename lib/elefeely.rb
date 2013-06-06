@@ -27,7 +27,7 @@ module Elefeely
 private
 
   def self.api_directory
-    @api_directory ||= request(:get, api_host)
+    request(:get, api_host)
   end
 
   def self.phone_numbers_uri
