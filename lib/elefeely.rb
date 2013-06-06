@@ -31,7 +31,7 @@ private
   end
 
   def self.phone_numbers_uri
-    signed_url(api_directory['phone_numbers_url'])
+    signed_url(api_directory['phones_url'])
   end
 
   def self.feelings_uri
